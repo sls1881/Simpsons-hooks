@@ -6,7 +6,7 @@ import { setupServer } from 'msw/node';
 import SimpsonsApi from './SimpsonsApi';
 
 const server = setupServer(
-  rest.get('https://thesimpsonsquoteapi.glitch.me/quotes', (res, req, ctx) => {
+  rest.get('https://thesimpsonsquoteapi.glitch.me/quotes', (req, res, ctx) => {
     return res(
       ctx.json([
         {
@@ -22,12 +22,16 @@ const server = setupServer(
 );
 describe('Simpsons quotes', () => {
   beforeAll(() => server.listen());
-  afterAll(() => server.listen());
+  afterAll(() => server.close());
 
   it('render a Simpsons character and quote', () => {
     render(<SimpsonsApi />);
     screen.getByAltText('spinner');
     const button = screen.getByRole('button', { name: 'fetch-button' });
     userEvent.click(button);
+    return waitFor(() => {
+      screen.getByAltText('Apu Nahasapeemapetilon');
+      screen.getByText('Thank you. Come again.');
+    });
   });
 });

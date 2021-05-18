@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Controls from '../components/app/characters/Controls';
 import Display from '../components/app/characters/Display';
 import Spinner from '../components/Spinner';
+import { getQuote } from '../services/simpsonsApi';
 
 function SimpsonsApi() {
   //set quote state
@@ -9,11 +10,10 @@ function SimpsonsApi() {
   //set loading state
   const [loading, setLoading] = useState(true);
 
-  const handleClick = async ({ target }) => {
-    setQuote(target.value);
+  const handleClick = async () => {
+    const fetch = await getQuote();
+    setQuote(fetch);
     setLoading(false);
-
-    // const fetch = await getQuote();
   };
 
   return (

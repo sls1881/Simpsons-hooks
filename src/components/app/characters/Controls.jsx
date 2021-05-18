@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 function Controls({ onClick }) {
   return (
     <div>
+      <h2>Get a Quote</h2>
       <button aria-label="fetch-button" onClick={onClick}>
         Fetch
       </button>
