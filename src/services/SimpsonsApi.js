@@ -1,0 +1,1 @@
+//Function to fetch from simpsons API
