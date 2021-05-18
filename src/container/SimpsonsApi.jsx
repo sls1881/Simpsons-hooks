@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Controls from '../components/app/characters/Controls';
 import Display from '../components/app/characters/Display';
 import Spinner from '../components/Spinner';
-import { getQuote } from '../services/simpsonsApi';
+import { getQuote } from '../services/simpsonsApiFetch';
 
 function SimpsonsApi() {
   //set quote state
